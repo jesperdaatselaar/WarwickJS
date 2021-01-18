@@ -1,0 +1,25 @@
+{
+  "name": "warwickjs",
+  "version": "0.1.0",
+  "description": "League of Legends API wrapper",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jesperdaatselaar/WarwickJS.git"
+  },
+  "keywords": [
+    "LOL"
+  ],
+  "author": "Jesper van Daatselaar",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/jesperdaatselaar/WarwickJS/issues"
+  },
+  "homepage": "https://github.com/jesperdaatselaar/WarwickJS#readme",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
