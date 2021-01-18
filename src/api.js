@@ -22,6 +22,21 @@ class WarwickJS {
         });
     });
   }
+
+  getSummonerIdByName(name) {
+    if (!name) {
+      return Promise.reject(new Error("No summoner has been specified"));
+    } else {
+      return new Promise((resolve, reject) => {
+        let url = `${this.base_uri}/summoner/v4/summoners/by-name/${name}`;
+        try {
+          return resolve(this.callApi(url));
+        } catch (error) {
+          return reject(error);
+        }
+      });
+    }
+  }
 }
 
 module.exports = WarwickJS;
