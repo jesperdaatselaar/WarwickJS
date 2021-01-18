@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 class WarwickJS {
   constructor(api_key, region) {
     this.api_key = api_key;
