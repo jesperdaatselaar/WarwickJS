@@ -52,6 +52,17 @@ class WarwickJS {
       });
     }
   }
+
+  getStatus() {
+    return new Promise((resolve, reject) => {
+      let url = `${this.base_uri}/status/v4/platform-data`;
+      try {
+        return resolve(this.callApi(url));
+      } catch (error) {
+        return reject(error);
+      }
+    });
+  }
 }
 
 module.exports = WarwickJS;
