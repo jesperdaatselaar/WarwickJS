@@ -37,6 +37,21 @@ class WarwickJS {
       });
     }
   }
+
+  getActiveGame(id) {
+    if (!id) {
+      return Promise.reject(new Error("No summoner id has been specified"));
+    } else {
+      return new Promise((resolve, reject) => {
+        let url = `${this.base_uri}/spectator/v4/active-games/by-summoner/${id}`;
+        try {
+          return resolve(this.callApi(url));
+        } catch (error) {
+          return reject(error);
+        }
+      });
+    }
+  }
 }
 
 module.exports = WarwickJS;
