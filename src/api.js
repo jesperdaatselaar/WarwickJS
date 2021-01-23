@@ -4,9 +4,12 @@ const axios = require("axios");
  * @param {string} region - A League of Legends servers' region
  */
 class WarwickJS {
-  constructor(api_key, region) {
+  constructor(api_key, region, language) {
     this.api_key = api_key;
-    this.base_uri = `https://${region}.api.riotgames.com/lol`;
+    this.region = region;
+    this.dynamic_uri = `https://${this.region}.api.riotgames.com/lol`;
+    this.static_uri = `http://ddragon.leagueoflegends.com/cdn/11.2.1/data/${this.language}`;
+    this.language = language;
   }
 
   /**
@@ -17,12 +20,28 @@ class WarwickJS {
     if (!this.api_key) return Promise.reject("No API key has been given");
     return new Promise((resolve, reject) => {
       if (!call) return reject("Bad request");
+      if (!this.region) return reject("No region specified");
       axios
-        .get(this.base_uri + call, {
+        .get(this.dynamic_uri + call, {
           params: {
             api_key: this.api_key,
           },
         })
+        .then((response) => {
+          return resolve(response.data);
+        })
+        .catch((error) => {
+          return reject(error);
+        });
+    });
+  }
+
+  getStaticData(call) {
+    return new Promise((resolve, reject) => {
+      if (!call) return reject("Bad request");
+      if (!this.language) return reject("No language specified");
+      axios
+        .get(this.static_uri + call)
         .then((response) => {
           return resolve(response.data);
         })
