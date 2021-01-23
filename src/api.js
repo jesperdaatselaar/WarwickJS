@@ -142,6 +142,21 @@ class WarwickJS {
       }
     });
   }
+
+  /**
+   * Returns match data
+   * @param {string} matchId - The id of a League of Legends match
+   */
+  getMatch(matchId) {
+    return new Promise((resolve, reject) => {
+      let uri = `/match/v4/matches/${matchId}`;
+      try {
+        return resolve(this.callApi(uri));
+      } catch (err) {
+        return reject(err);
+      }
+    });
+  }
 }
 
 module.exports = WarwickJS;
