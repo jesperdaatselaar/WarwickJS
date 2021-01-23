@@ -13,12 +13,12 @@ class WarwickJS {
    * Call the API with a given url
    * @param {string} url - The url to request
    */
-  callApi(url) {
+  callApi(call) {
     if (!this.api_key) return Promise.reject("No API key has been given");
     return new Promise((resolve, reject) => {
-      if (!url) return reject("Bad request");
+      if (!call) return reject("Bad request");
       axios
-        .get(url, {
+        .get(this.base_uri + call, {
           params: {
             api_key: this.api_key,
           },
@@ -41,9 +41,9 @@ class WarwickJS {
       return Promise.reject(new Error("No summoner has been specified"));
     } else {
       return new Promise((resolve, reject) => {
-        let url = `${this.base_uri}/summoner/v4/summoners/by-name/${name}`;
+        let uri = `/summoner/v4/summoners/by-name/${name}`;
         try {
-          return resolve(this.callApi(url));
+          return resolve(this.callApi(uri));
         } catch (error) {
           return reject(error);
         }
@@ -55,14 +55,14 @@ class WarwickJS {
    * Get current game played by summoner
    * @param {string} id - The id of a League of legends summoner
    */
-  getActiveGame(id) {
-    if (!id) {
+  getActiveGame(summonerId) {
+    if (!summonerId) {
       return Promise.reject(new Error("No summoner id has been specified"));
     } else {
       return new Promise((resolve, reject) => {
-        let url = `${this.base_uri}/spectator/v4/active-games/by-summoner/${id}`;
+        let uri = `/spectator/v4/active-games/by-summoner/${summonerId}`;
         try {
-          return resolve(this.callApi(url));
+          return resolve(this.callApi(uri));
         } catch (error) {
           return reject(error);
         }
@@ -74,9 +74,9 @@ class WarwickJS {
    */
   getStatus() {
     return new Promise((resolve, reject) => {
-      let url = `${this.base_uri}/status/v4/platform-data`;
+      let uri = `/status/v4/platform-data`;
       try {
-        return resolve(this.callApi(url));
+        return resolve(this.callApi(uri));
       } catch (error) {
         return reject(error);
       }
