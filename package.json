@@ -1,10 +1,10 @@
 {
   "name": "warwickjs",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "League of Legends API wrapper",
   "main": "src/api.js",
   "scripts": {
-  "test": "echo \"No test specified\""
+    "test": "echo \"No test specified\""
   },
   "repository": {
     "type": "git",
