@@ -176,6 +176,20 @@ class WarwickJS {
       }
     });
   }
+
+  /**
+   * Returns list of all champions
+   */
+  getAllChampions() {
+    return new Promise((resolve, reject) => {
+      let uri = `/champion.json`;
+      try {
+        return resolve(this.callStaticData(uri).data);
+      } catch (err) {
+        return reject(err);
+      }
+    });
+  }
 }
 
 module.exports = WarwickJS;
