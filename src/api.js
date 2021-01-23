@@ -113,6 +113,21 @@ class WarwickJS {
       }
     });
   }
+
+  /**
+   * Returns match list of summoner
+   * @param {string} id - The id of a League of legends account
+   */
+  getMatchHistory(accountId) {
+    return new Promise((resolve, reject) => {
+      let uri = `/match/v4/matchlists/by-account/${accountId}`;
+      try {
+        return resolve(this.callApi(uri));
+      } catch (err) {
+        return reject(err);
+      }
+    });
+  }
 }
 
 module.exports = WarwickJS;
