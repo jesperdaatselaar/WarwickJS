@@ -1,7 +1,7 @@
 const axios = require("axios");
 /**
  * @param {string} api_key - A Riot Games API key
- * @param {string} region - A league of legends servers' region
+ * @param {string} region - A League of Legends servers' region
  */
 class WarwickJS {
   constructor(api_key, region) {
@@ -34,7 +34,7 @@ class WarwickJS {
 
   /**
    * Get id by summoners name
-   * @param {string} name - The name of a league of legends summoner
+   * @param {string} name - The name of a league of Legends summoner
    */
   getSummonerIdByName(name) {
     if (!name) {
@@ -53,7 +53,7 @@ class WarwickJS {
 
   /**
    * Get current game played by summoner
-   * @param {string} id - The id of a League of legends summoner
+   * @param {string} id - The id of a League of Legends summoner
    */
   getActiveGame(summonerId) {
     if (!summonerId) {
@@ -71,7 +71,7 @@ class WarwickJS {
   }
 
   /**
-   * Returns the current status of the league of legends servers
+   * Returns the current status of the league of Legends servers
    */
   getStatus() {
     return new Promise((resolve, reject) => {
@@ -100,7 +100,7 @@ class WarwickJS {
 
   /**
    * Returns the summoners masteries per champion
-   * @param {string} summonerId - The id of a League of legends summoner
+   * @param {string} summonerId - The id of a League of Legends summoner
    */
   getChampionMastery(summonerId) {
     return new Promise((resolve, reject) => {
@@ -116,11 +116,25 @@ class WarwickJS {
 
   /**
    * Returns match list of summoner
-   * @param {string} id - The id of a League of legends account
+   * @param {string} matchId - The id of a League of Legends match
    */
   getMatchHistory(accountId) {
     return new Promise((resolve, reject) => {
       let uri = `/match/v4/matchlists/by-account/${accountId}`;
+      try {
+        return resolve(this.callApi(uri));
+      } catch (err) {
+        return reject(err);
+      }
+    });
+  }
+  /**
+   * Returns timeline of a match
+   * @param {string} matchId - The id of a League of Legends match
+   */
+  getMatchTimeline(matchId) {
+    return new Promise((resolve, reject) => {
+      let uri = `/match/v4/timelines/by-match/${matchId}`;
       try {
         return resolve(this.callApi(uri));
       } catch (err) {
