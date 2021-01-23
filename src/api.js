@@ -97,6 +97,22 @@ class WarwickJS {
       }
     });
   }
+
+  /**
+   * Returns the summoners masteries per champion
+   * @param {string} summonerId - The id of a League of legends summoner
+   */
+  getChampionMastery(summonerId) {
+    return new Promise((resolve, reject) => {
+      let uri = `/champion-mastery/v4/champion-masteries/by-summoner/${summonerId}`;
+      try {
+        summonerId;
+        return resolve(this.callApi(uri));
+      } catch (err) {
+        return reject(err);
+      }
+    });
+  }
 }
 
 module.exports = WarwickJS;
