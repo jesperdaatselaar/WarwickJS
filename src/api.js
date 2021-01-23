@@ -7,9 +7,9 @@ class WarwickJS {
   constructor(api_key, region, language) {
     this.api_key = api_key;
     this.region = region;
+    this.language = language;
     this.dynamic_uri = `https://${this.region}.api.riotgames.com/lol`;
     this.static_uri = `http://ddragon.leagueoflegends.com/cdn/11.2.1/data/${this.language}`;
-    this.language = language;
   }
 
   /**
@@ -36,7 +36,7 @@ class WarwickJS {
     });
   }
 
-  getStaticData(call) {
+  callStaticData(call) {
     return new Promise((resolve, reject) => {
       if (!call) return reject("Bad request");
       if (!this.language) return reject("No language specified");
