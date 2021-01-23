@@ -69,6 +69,7 @@ class WarwickJS {
       });
     }
   }
+
   /**
    * Returns the current status of the league of legends servers
    */
@@ -79,6 +80,20 @@ class WarwickJS {
         return resolve(this.callApi(uri));
       } catch (error) {
         return reject(error);
+      }
+    });
+  }
+
+  /**
+   * Returns the champion id of the free rotations
+   */
+  getFreeChampion() {
+    return new Promise((resolve, reject) => {
+      let uri = `/platform/v3/champion-rotations`;
+      try {
+        return resolve(this.callApi(uri));
+      } catch (err) {
+        return reject(err);
       }
     });
   }
